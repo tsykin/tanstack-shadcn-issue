@@ -1,22 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { DICTIONARY } from '@/shared/dictionary';
-import { CLIENT_ENV } from '@/shared/env.client';
-import { seo } from '@/shared/seo';
 
 export const Route = createFileRoute('/(main)/')({
 	component: Page,
 	loader: async () => {},
-	head: () => {
-		const url = `${CLIENT_ENV.VITE_BASE_URL}/about`;
-		return {
-			meta: [
-				...seo({
-					title: `About ${DICTIONARY.SEO_POSTFIX}`,
-				}),
-			],
-			links: [{ rel: 'canonical', href: url }],
-		};
-	},
 });
 
 function Page() {

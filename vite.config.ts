@@ -18,13 +18,4 @@ export default defineConfig(({ mode }) => ({
 		viteReact(),
 		tailwindcss(),
 	],
-	build: {
-		rollupOptions: {
-			external: ['puppeteer', 'sharp'],
-		},
-	},
-	ssr: {
-		external: ['puppeteer', 'sharp'],
-		noExternal: [],
-	},
 }));

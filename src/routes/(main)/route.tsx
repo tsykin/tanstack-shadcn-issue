@@ -10,7 +10,6 @@ function MainLayout() {
 	return (
 		<main id="top">
 			<NavBar />
-			{/* <Breadcrumbs /> */}
 			<Outlet />
 			<Footer />
 		</main>
