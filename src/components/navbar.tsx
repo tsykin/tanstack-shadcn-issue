@@ -22,22 +22,9 @@ export function NavBar() {
 			href: '/',
 			title: 'Homepage',
 		},
-		{
-			href: '/about',
-			title: 'About',
-		},
-		{
-			href: '/login',
-			title: 'Login',
-		},
-		{
-			href: '/register',
-			title: 'Register',
-		},
 	];
 
 	const location = useLocation();
-	const isAboutPage = location.pathname === '/about';
 
 	const aboutSections = [
 		{ id: 'overview', title: 'Overview' },
@@ -57,18 +44,17 @@ export function NavBar() {
 							{link.title}
 						</Link>
 					))}
-					{isAboutPage &&
-						aboutSections.map((section) => (
-							<a
-								key={section.id}
-								href={`/about#${section.id}`}
-								className="transition-colors hover:text-primary"
-							>
-								{section.title}
-							</a>
-						))}
+					{aboutSections.map((section) => (
+						<a
+							key={section.id}
+							href={`/#${section.id}`}
+							className="transition-colors hover:text-primary"
+						>
+							{section.title}
+						</a>
+					))}
 				</div>
-				{isAboutPage && (
+				{
 					<Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
 						<SheetTrigger asChild>
 							<Button variant="outline" size="icon">
@@ -84,7 +70,7 @@ export function NavBar() {
 								{aboutSections.map((section) => (
 									<a
 										key={section.id}
-										href={`/about#${section.id}`}
+										href={`/#${section.id}`}
 										onClick={() => setSheetOpen(false)}
 										className="rounded-md px-3 py-2 font-medium text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
 									>
@@ -94,7 +80,7 @@ export function NavBar() {
 							</nav>
 						</SheetContent>
 					</Sheet>
-				)}
+				}
 			</div>
 		</div>
 	);
