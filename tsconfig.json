@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ES2022",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@root/*": [
+        "./*"
+      ]
+    },
+    "verbatimModuleSyntax": false // prevents server bundles leaking into client bundles https://tanstack.com/start/latest/docs/framework/react/build-from-scratch#typescript-configuration
+  }
+}

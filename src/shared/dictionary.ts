@@ -1,0 +1,22 @@
+export const DICTIONARY = {
+	BRAND_NAME: 'Your Brand',
+	SITE_NAME: 'Brand',
+	DEFAULT_PAGE_TITLE: 'Sample page title',
+	DEFAULT_PAGE_DESCRIPTION: 'Sample page description',
+	SLOGAN: 'Sample brand slogan.',
+	SEO_POSTFIX: '| Brand name',
+	AUTH: {
+		LOGIN_TITLE: 'Login',
+		REGISTER_TITLE: 'Register',
+		LOGIN_BUTTON: 'Login',
+		REGISTER_BUTTON: 'Register',
+		LOGIN_FOOTER: "Don't have an account? ",
+		REGISTER_FOOTER: 'Already have an account? ',
+		LOGIN_FOOTER_LINK: 'Register',
+		REGISTER_FOOTER_LINK: 'Login',
+		OR_EMAIL_PASSWORD: 'or by email and password',
+		ERROR: 'An error occurred. Please try again.',
+		SUCCESS: 'Success.',
+		FORM_ERROR: 'Please fix the errors and try again.',
+	},
+};

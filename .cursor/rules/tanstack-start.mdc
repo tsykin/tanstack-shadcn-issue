@@ -1,0 +1,106 @@
+---
+alwaysApply: true
+---
+
+## Architecture
+  
+- **Runtime**: Node.js
+- **Frontend**: React 19 with TypeScript
+- **Framework**: TanStack Start (SSR routing with file-based patterns)
+- **Styling**: Tailwind CSS 4 + Shadcn/ui components
+- **Validation**: Zod for runtime validation and TypeScript integration
+- **State Management**: React Query (TanStack Query) for server state, React Context for global state
+- **Build Tool**: Vite 7
+- **Package Manager**: npm
+
+## Key Principles
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+- Follow Tanstack Start docs for Data Fetching, Rendering, and Routing.
+
+## Naming Conventions
+- Use lowercase with dashes for directories (e.g., components/auth-form).
+- Favor named exports for components.
+
+## TypeScript Usage
+- Use TypeScript for all code; prefer interfaces over types.
+- Avoid enums; use const objects with `as const` instead.
+- Use functional components with TypeScript interfaces.
+- Add declarative JSDocs for long-running and complex functions. Do not use @params and @returns in JSDocs.
+- Only write explicit types/interfaces where they cannot be inferred.
+- Use `unknown` instead of `any` for type-safe error handling.
+
+## Syntax and Formatting
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+## UI and Styling
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+- Don't use Tailwind colors, use shadcn color scheme.
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
+- When possible, dont separate mobile and desktop UI. Write a single, responsive UI.
+
+### SectionWrapper and SectionHeader
+
+Never hardcode headings (`<h1>`, `<h2>`, etc.). Always use `SectionWrapper` in route files with `title`, `description`, and `headerActions` props. Feature components should return only content, not headings.
+
+**Route file:**
+```typescript
+<SectionWrapper title="My Posts" description="Welcome!" headerActions={<Button />} isH1>
+  <DashboardPosts myPosts={myPosts} />
+</SectionWrapper>
+```
+
+**Feature component (returns content only, no headings):**
+```typescript
+export function DashboardPosts({ myPosts }) {
+  return <div>{myPosts.map(post => <PostCard key={post.id} post={post} />)}</div>;
+}
+```
+
+## Performance Optimization
+- Minimize 'useEffect' and 'setState'
+- Optimize images: use WebP format, implement lazy loading.
+
+## Key Conventions
+Optimize Web Vitals (LCP, CLS, FID).
+
+## TanStack Start
+
+### Server Functions
+
+Use `createServerFn` for all server-side operations. Follow these patterns:
+
+#### Basic Server Function Structure
+
+```typescript
+import { createServerFn } from '@tanstack/react-start';
+
+export const getEvents = createServerFn({ method: 'GET' })
+  .inputValidator((data: GetEventsInput) => data)
+  .handler(async ({ data }) => {
+    // Server logic here
+    return result;
+  });
+```
+
+### Middleware
+
+Use middleware for authentication, authorization, and cross-cutting concerns. Middleware runs after input validation and before the handler.
+
+**Reference implementations:**
+- Middleware creation: `src/shared/middleware.ts` (see `isAuthenticated` and `canUpdatePost`)
+- Applying middleware: `src/features/post/actions.ts` (see `updatePost`)
+
+**Best Practices:**
+- Use `.inputValidator()` before `.middleware()` so middleware receives validated data
+- Pass middleware as an array: `.middleware([middleware1, middleware2])`
+- Use `next({ context })` to pass data to handlers
+- Access input data with type assertion: `data as unknown as Type`
+- Store reusable middleware in `src/shared/middleware.ts`
+
+<!-- TODO -->

@@ -1,0 +1,9 @@
+node_modules
+.env
+
+# Build output
+.nitro
+.output
+.tanstack
+generated
+dist
